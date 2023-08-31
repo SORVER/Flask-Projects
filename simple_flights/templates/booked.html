@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+
+
+ {% block body %}
+    <h2> passengers </h2>
+    <ol>
+        {% for per in passes%}
+        <li> {{per['name']}}  , flight id is {{per['flight_id']}}</li>
+        {% endfor %}
+    </ol>
+{% endblock %}

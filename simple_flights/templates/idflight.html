@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+
+ {% block body%}
+
+
+ {% if flights %}
+ <h2> passengers in {{ flights[0].id }} avalible</h1>
+
+    <ol>
+
+
+      {% for flight in flights %}
+
+         {{flight['name']}}
+
+ 
+       
+    </li>
+      {% endfor%}
+     
+
+    </ol>
+   {%endif%}
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+
+
+ {% block body%}
+ <h2> Flights avalible</h1>
+
+    <ol name="ift">
+        {% for flight in flights %}
+        <li>
+          from {{ flight['origin'] }} to {{ flight['destination'] }}, in {{ flight['duration'] }} min
+          <a href="{{ url_for('prefi', flight_id=flight['id']) }}"><button>Show passengers</button></a>
+        </li>
+        {% endfor %}
+      </ol>
+
+
+
+
+{% endblock %}
