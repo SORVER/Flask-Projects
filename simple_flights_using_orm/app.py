@@ -1,17 +1,13 @@
 import os
-from dotenv import load_dotenv
 from flask import Flask, render_template, request
-from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy.orm import scoped_session, sessionmaker
 from models import *
-
 from models import db
 
-# we may use pip3 install flask-session
+
 app = Flask(__name__) # creating the app
 
 app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("DATABASE_URL")
- # tells the file where to fund the databse
+ # tells the file where to find the databse
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False  # turn off autimatic changes "it used in Debuging"
 
 db.init_app(app)
@@ -23,7 +19,7 @@ def index():
     flights = Flight.query.all()
     return render_template("index.html" ,flights = flights )
 
-@app.route("/book" , methods = ['POST'])  # adding dirctory for the next exactly function
+@app.route("/book" , methods = ['POST'])  
 def book():
     cname = request.form.get("custname")
     # try catch
