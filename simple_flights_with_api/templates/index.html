@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+
+
+ {% block body%}
+ <h1> Book a flight</h1>
+
+
+  <form action="{{url_for('book')}}" method="post" >
+    <select name = "inserted">
+      {% for flight in flights %}
+      <option value = "{{flight.id}}" > from  {{flight.origin}} to {{flight.destination}} , in {{flight.duration}} min</option>
+      {% endfor%}
+    </select>
+      <input name = 'custname' placeholder="Enter your name"> 
+
+  <button>Submit a flight</button>
+  </form>
+   <a href = "{{url_for('preflights')}}"> Look More at the flights </a>
+
+{% endblock %}
