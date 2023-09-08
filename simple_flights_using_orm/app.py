@@ -34,8 +34,7 @@ def book():
     iscou = Flight.query.get(newid)
     if iscou is None:
         return "ERROR"
-    pass1 = Passenger(name = cname, flight_id = newid)
-    db.session.add(pass1)
+    iscou.add_pass(cname)
     passengers = Passenger.query.all()
     db.session.commit()
     
@@ -48,7 +47,10 @@ def preflights():
 
 @app.route("/flights/<int:flight_id>" , methods = ['POST','GET'])
 def prefi(flight_id):
-    pass_flights = Passenger.query.filter_by(flight_id = flight_id).all()
-    if len(pass_flights) != 0 :
-        return render_template("idflight.html" , flights = pass_flights )
-    return "No passengers"
+    ourflight = Flight.query.get(flight_id)
+    
+    if ourflight is None :
+        return "No passengers"
+    pass_flights = ourflight.passenger
+    return render_template("idflight.html" , flights = pass_flights )
+    
